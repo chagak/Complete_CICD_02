@@ -38,6 +38,15 @@ jobs:
             - name: Trviy Scan
               run: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image $GITHUB_SHA
 
+
+            # Set up AWS Credentials
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v2
+              with:
+                access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                region: ${{secrets.AWS_REGION}}
+
             # Log in to Amazon ECR
             - name: Log into Amazon ECR
               run: aws ecr get-login-password --region ${{secrets.AWS_REGION}} | docker login --username AWS --password-stdin ${{secrets.ECR_REPOSITORY_URI}}
