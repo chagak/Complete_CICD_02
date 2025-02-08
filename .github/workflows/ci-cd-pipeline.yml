@@ -35,6 +35,7 @@ jobs:
               run: |
                 docker build -t actions-app:${{github.sha}} .
                 docker tag actions-app:${{github.sha}} ${{secrets.ECR_REPOSITORY_URI}}/action-cicd:latest
+                docker tag actions-app:${{github.sha}} ${{secrets.DOCKERHUB_USERNAME}}/action-cicd:latest
 
             # Trivy Scan
             - name: Trviy Scan
@@ -69,8 +70,8 @@ jobs:
                 username: ${{secrets.DOCKERHUB_USERNAME}}
                 password: ${{secrets.DOCKERHUB_TOKEN}}
 
-
-
             # Push Image to Dockerhub
+            - name: Push Image Into Dockerhub
+              run:
+                docker push ${{secrets.DOCKERHUB_USERNAME}}/action-cicd:latest
 
-            
