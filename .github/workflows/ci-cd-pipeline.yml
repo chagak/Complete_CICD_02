@@ -11,8 +11,21 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
+            # checkout code
             - name: checkout code
               uses: actions/checkout@v4
+
+            # Set up NodeJS
+            - name: Set up NodeJS
+              uses: actions/setup-node@v3
+              with:
+                node-version: 14
+
+            # Install NodeJS Dependencies
+            - name: Install NodeJS dependencies
+              run: npm install
+
+
 
 
 
