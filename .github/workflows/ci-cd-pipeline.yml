@@ -41,7 +41,8 @@ jobs:
 
             # Set up AWS Credentials
             - name: Configure AWS Credentials
-              uses: aws-actions/configure-aws-credentials@v2
+              #uses: aws-actions/configure-aws-credentials@v2
+              uses: jwalton/gh-ecr-login@v3
               with:
                 access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                 secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
