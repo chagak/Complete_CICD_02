@@ -30,6 +30,10 @@ jobs:
               env:
                 SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+            # Docker Image Build
+            - name: Build Docker Image
+              run: docker build -t $GITHUB_SHA .
+
 
 
 
